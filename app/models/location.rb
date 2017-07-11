@@ -5,7 +5,7 @@ class Location < ApplicationRecord
   before_create :set_expires_at
   before_create :set_fake_lat_lng
 
-  validates :expires_in_mins, presence: true, numericality: true
+  validates :expires_in_mins, presence: true, numericality: true, on: :create
 
   MIN_SHARING_TIME = 10.minutes
 
