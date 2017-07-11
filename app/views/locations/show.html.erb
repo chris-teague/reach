@@ -1,0 +1,85 @@
+<% content_for :title do %>
+  <%= @location.name %>
+<% end %>
+
+<% content_for :side_menu do %>
+  <div class="top-join expiry">
+    <a>
+      <small>EXPIRING IN</small><br />
+      <span id="group-countdown">&nbsp;</span>
+    </a>
+    <script>
+      $(document).ready(function(){
+        countdownTimer(<%= @location.expires_in_seconds %>, $('#group-countdown'));
+      });
+    </script>
+  </div>
+<% end %>
+
+<% if notice %>
+  <p id="notice"><%= notice %></p>
+<% end %>
+
+<% content_for(:map_content) do %>
+
+  <div id="map"></div>
+
+  <script type='text/javascript'>
+
+    $(document).ready(function(){
+      map = new L.Map('map');
+
+      L.Icon.Default.imagePath = '/assets';
+
+      var osmUrl = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png';
+
+      var osmAttrib = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+
+      L.tileLayer(osmUrl, {
+        maxZoom: 17,
+        minZoom: 3,
+        attribution: osmAttrib,
+        id: 'examples.map-i875mjb7'
+      }).addTo(map);
+
+      var markers = {};
+
+      markers['<%= @location.id %>'] = L.Marker.movingMarker([L.latLng(<%= @location.lat %>, <%= @location.lng %>)]);
+      markers['<%= @location.id %>'].addTo(map);
+
+      var markerLocations = new Array();
+
+      for (var key in markers) {
+        markerLocations.push(markers[key]);
+      }
+
+      var group = new L.featureGroup(markerLocations);
+      map.fitBounds(group.getBounds());
+
+      L.edgeMarker().addTo(map);
+
+      var userUpdates = function(message) {
+        console.log('message');
+        var latlng = L.latLng(message.lat, message.lng);
+        markers['<%= @location.id %>'].moveTo(latlng, 1000);
+      }
+
+      App.cable.subscriptions.create({
+        channel: "LocationChannel",
+        location_id: '<%= @location.id %>'
+      }, {
+        received: function(data) {
+          console.log('wat');
+          userUpdates(data);
+          return console.log(data);
+        },
+        connected: function() {
+          return console.log('wat');
+        }
+      });
+    });
+
+
+  </script>
+
+<% end %>

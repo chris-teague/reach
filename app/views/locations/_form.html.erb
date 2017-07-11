@@ -1,0 +1,32 @@
+<%= form_with(model: location, remote: true) do |form| %>
+  <% if location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+      <ul>
+      <% location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :location_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :expires_in_mins, 'Automatically stop sharing in' %><br>
+    <%= form.select :expires_in_mins, id: :location_expires_in_mins do %>
+      <% [['10 minutes', 10], ['20 minutes', 20], ['30 minutes', 30],
+          ['45 minutes', 45], ['1 hour', 60], ['2 hours', 120], ['6 hours', 360]].each do |c| -%>
+        <%= content_tag(:option, c.first, value: c.last, selected: c.last == @location.expires_in_mins) %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit value: 'Start Sharing' %>
+  </div>
+<% end %>
