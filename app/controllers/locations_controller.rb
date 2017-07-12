@@ -15,7 +15,7 @@ class LocationsController < ApplicationController
 
   # GET /locations/new
   def new
-    @location = Location.new
+    @location = Location.new(expires_in_mins: 60)
   end
 
   # GET /locations/1/edit
