@@ -16,7 +16,9 @@
   </div>
 <% end %>
 
-<p id="notice">Link Copied to Clipboard.</p>
+<% if logged_in? %>
+  <p id="notice">Link Copied to Clipboard.</p>
+<% end %>
 
 <% content_for(:map_content) do %>
 

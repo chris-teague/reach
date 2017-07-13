@@ -1,6 +1,12 @@
 <h1>Real Time Location Sharing</h1>
 
-<%= render 'form', location: @location %>
+<% if logged_in? %>
+  <%= render 'form', location: @location %>
+<% else %>
+  <p id='use-app-notice' style='display:none;'>
+    Download the iPhone or Android application to start sharing yourself
+  </p>
+<% end %>
 
 
 <% if logged_in? && !current_user.locations.current.empty? %>

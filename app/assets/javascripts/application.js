@@ -26,4 +26,10 @@ $(document).ready(function(){
       $('#notice').hide();
     }
   }, 10000);
+
+  setInterval(function () {
+    if($('#use-app-notice') != undefined) {
+      $('#use-app-notice').show();
+    }
+  }, 1000);
 });
