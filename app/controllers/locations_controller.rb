@@ -11,7 +11,7 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.json
   def show
-    redirect_to :expired if @location.expired?
+    render :expired if @location.expired?
   end
 
   def expired
