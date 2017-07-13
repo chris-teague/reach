@@ -1,5 +1,4 @@
 class Location < ApplicationRecord
-
   attr_accessor :expires_in_mins
 
   belongs_to :user
@@ -17,12 +16,17 @@ class Location < ApplicationRecord
     expires_at - Time.zone.now
   end
 
+  def expired?
+    expires_at < Time.zone.now
+  end
+
   def set_expires_at
     self.expires_in_mins ||= MIN_SHARING_TIME
     self.expires_at = (Time.zone.now + expires_in_mins.to_i.minutes)
   end
 
   def broadcast_lat_lng
+    return if expired?
     ActionCable.server.broadcast "location_#{id}", { lat: lat, lng: lng }
   end
 end

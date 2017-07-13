@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :locations do
-    get :spam_cable, on: :member
+    get :expired, on: :member
   end
   root 'locations#new'
 

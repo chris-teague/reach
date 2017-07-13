@@ -11,6 +11,10 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.json
   def show
+    redirect_to :expired if @location.expired?
+  end
+
+  def expired
   end
 
   # GET /locations/new
@@ -20,12 +24,6 @@ class LocationsController < ApplicationController
 
   # GET /locations/1/edit
   def edit
-  end
-
-  def spam_cable
-    ActionCable.server.broadcast \
-      "location_#{@location.id}", { lat: 123, lng: 32 }
-    render body: nil
   end
 
   # POST /locations

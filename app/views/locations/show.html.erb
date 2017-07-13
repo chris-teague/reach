@@ -21,12 +21,8 @@
 <% end %>
 
 <% content_for(:map_content) do %>
-
   <div id="map"></div>
-
   <script type='text/javascript'>
-    document.addEventListener("turbolinks:before-visit", function() {
-    });
     document.addEventListener("turbolinks:load", function() {
       map = new L.Map('map');
 
@@ -43,7 +39,7 @@
         id: 'examples.map-i875mjb7'
       }).addTo(map);
 
-      /* This should not be here */
+      /* FIXME: This should not be here */
 
       var markers = {};
 
@@ -87,7 +83,6 @@
           var group = new L.featureGroup(markerLocations);
           map.fitBounds(group.getBounds());
         }
-
       }
 
       App.cable.subscriptions.create({
@@ -102,8 +97,5 @@
         }
       });
     });
-
-
   </script>
-
 <% end %>

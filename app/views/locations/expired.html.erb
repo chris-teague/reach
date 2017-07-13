@@ -1,0 +1,15 @@
+<% content_for :title do %>
+  Expired
+<% end %>
+
+<p>
+  The location sharing session you've tried to access has expired.
+</p>
+
+<% if logged_in? %>
+  <%= link_to 'yay', root_path %>
+<% else %>
+  <p>
+    Download the iPhone or Android application to start sharing your location.
+  </p>
+<% end %>
