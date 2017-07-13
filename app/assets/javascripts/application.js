@@ -25,5 +25,5 @@ $(document).ready(function(){
     if($('#notice') != undefined) {
       $('#notice').hide();
     }
-  }, 5000);
+  }, 10000);
 });

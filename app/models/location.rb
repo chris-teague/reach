@@ -2,8 +2,12 @@ class Location < ApplicationRecord
 
   attr_accessor :expires_in_mins
 
+  belongs_to :user
+
   before_create :set_expires_at
-  before_create :set_fake_lat_lng
+  after_update :broadcast_lat_lng
+
+  scope :current, -> { where("locations.expires_at > ?", Time.zone.now) }
 
   validates :expires_in_mins, presence: true, numericality: true, on: :create
 
@@ -18,8 +22,7 @@ class Location < ApplicationRecord
     self.expires_at = (Time.zone.now + expires_in_mins.to_i.minutes)
   end
 
-  def set_fake_lat_lng
-    self.lat = rand(100)
-    self.lng = rand(100)
+  def broadcast_lat_lng
+    ActionCable.server.broadcast "location_#{id}", { lat: lat, lng: lng }
   end
 end

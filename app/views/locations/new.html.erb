@@ -1,3 +1,20 @@
 <h1>Share Your Location in Real Time</h1>
 
 <%= render 'form', location: @location %>
+
+
+<% if logged_in? && !current_user.locations.current.empty? %>
+  <Br />
+  <h2>Your Current Sessions:</h2>
+  <table>
+    <tr>
+      <th style="width:60%">Name</th><th>Expires</th>
+    </tr>
+    <% current_user.locations.current.each do |location| %>
+      <tr>
+        <td><%= link_to(location.name.present? ? location.name : '<em>unnamed</em>'.html_safe, location_url(location)) %></td>
+        <td><%= distance_of_time_in_words(Time.zone.now, location.expires_at) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
