@@ -108,4 +108,15 @@ select {
 .actions input {
   width: 90%;
   margin: 0 auto;
+  border: none;
+  padding: 10px;
+  background-color: #FFC107;
+  font-size: 18px;
+  font-family: 'Tungsten A', 'Tungsten B';
+  color: #fff;
+  letter-spacing: 0.2px;
+}
+
+.actions input:hover {
+  background-color: #f0b608;
 }
