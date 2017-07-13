@@ -106,6 +106,7 @@ select {
 }
 
 .actions input {
+  -webkit-appearance:none;
   width: 90%;
   margin: 0 auto;
   border: none;
