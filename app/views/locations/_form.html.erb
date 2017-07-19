@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, 'Name (optional)' %>
     <%= form.text_field :name, id: :location_name %>
   </div>
 
   <div class="field">
-    <%= form.label :expires_in_mins, 'Automatically stop sharing in' %>
+    <%= form.label :expires_in_mins, 'Automatically stop sharing your location in:' %>
     <%= form.select :expires_in_mins, id: :location_expires_in_mins do %>
       <% [['10 minutes', 10], ['20 minutes', 20], ['30 minutes', 30],
           ['45 minutes', 45], ['1 hour', 60], ['2 hours', 120], ['6 hours', 360]].each do |c| -%>
