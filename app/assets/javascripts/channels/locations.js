@@ -15,17 +15,18 @@ document.addEventListener("turbolinks:load", function() {
   }).addTo(map);
 
   L.edgeMarker().addTo(map);
-  map.setView([map._container.dataset.lat, map._container.dataset.lng], 13);
 
   var marker;
 
   /* setup initial marker if we already have a user location */
   if(map._container.dataset.lat != '') {
+    map.setView([map._container.dataset.lat, map._container.dataset.lng], 13);
     var latlng = L.latLng(map._container.dataset.lat, map._container.dataset.lng);
     marker = L.Marker.movingMarker([latlng]);
     marker.addTo(map);
   } else {
     /* display searching overlay */
+    map.setView([100, 200], 13);
     $('.ajax-loader').show();
   }
 
