@@ -21,12 +21,12 @@
 //= require movingmarker
 //= require channels/locations
 
-$(document).ready(function(){
+document.addEventListener("turbolinks:load", function() {
   setInterval(function () {
     if($('#notice') != undefined) {
       $('#notice').hide();
     }
-  }, 10000);
+  }, 12000);
 
   setInterval(function () {
     if($('#use-app-notice') != undefined) {

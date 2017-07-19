@@ -17,7 +17,15 @@
 <% end %>
 
 <% if logged_in? %>
-  <p id="notice">Link Copied to Clipboard.</p>
+  <p id="notice">
+    <% if current_user.locations.count <= 3 %>
+      Location sharing link coppied to clipboard. <br />Paste this into
+      another app (i.e. Messenger, an email) to share your location with friends
+      &amp; colleagues.
+    <% else %>
+      Link copied to clipboard.
+    <% end %>
+  </p>
 <% end %>
 
 <div data-location-id="<%= @location.id %>"></div>
