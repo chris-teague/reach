@@ -21,6 +21,10 @@
 <% end %>
 
 <div data-location-id="<%= @location.id %>"></div>
+<div class="ajax-loader hidden">
+  <img src="/assets/ajax-loader.gif" alt="loading animation" />
+  <p>Finding Location</p>
+</div>
 
 <% content_for(:map_content) do %>
   <div id="map-<%= @location.id %>" class='map' data-lat="<%= @location.lat %>" data-lng="<%= @location.lng %>"></div>

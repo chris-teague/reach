@@ -18,16 +18,35 @@ document.addEventListener("turbolinks:load", function() {
   map.setView([map._container.dataset.lat, map._container.dataset.lng], 13);
 
   var marker;
+
+  /* setup initial marker if we already have a user location */
+  if(map._container.dataset.lat != '') {
+    var latlng = L.latLng(map._container.dataset.lat, map._container.dataset.lng);
+    marker = L.Marker.movingMarker([latlng]);
+    marker.addTo(map);
+  } else {
+    /* display searching overlay */
+    $('.ajax-loader').show();
+  }
+
   var userUpdates = function(message) {
+    $('.ajax-loader').hide();
+
     var latlng = L.latLng(message.lat, message.lng);
+    var markerWas = marker;
 
     if(marker === undefined) {
       marker = L.Marker.movingMarker([latlng]);
       marker.addTo(map);
     }
+
     marker.moveTo(latlng, 1000);
 
-    if(marker !== undefined) {
+    /*
+      Move to the marker if it's the first time it's been displayed,
+      otherwise don't, as the user should control the map from here-on
+    */
+    if(markerWas === undefined) {
       var group = new L.featureGroup([marker]);
       map.fitBounds(group.getBounds());
     }

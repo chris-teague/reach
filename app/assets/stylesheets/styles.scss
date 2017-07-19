@@ -291,3 +291,13 @@ input.button {
     20% { background-color: #A3D39F;}
     100% {background-color:none;}
 }
+
+.ajax-loader {
+  padding: 10px 20px;
+  text-align: center;
+  background-color: rgba(255,255,255,0.8);
+  width:auto;
+  p {
+    width:auto;
+  }
+}
