@@ -20,82 +20,8 @@
   <p id="notice">Link Copied to Clipboard.</p>
 <% end %>
 
+<div data-location-id="<%= @location.id %>"></div>
+
 <% content_for(:map_content) do %>
-  <div id="map"></div>
-  <script type='text/javascript'>
-    document.addEventListener("turbolinks:load", function() {
-      map = new L.Map('map');
-
-      L.Icon.Default.imagePath = '/assets';
-
-      var osmUrl = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png';
-
-      var osmAttrib = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-
-      L.tileLayer(osmUrl, {
-        maxZoom: 17,
-        minZoom: 3,
-        attribution: osmAttrib,
-        id: 'examples.map-i875mjb7'
-      }).addTo(map);
-
-      /* FIXME: This should not be here */
-
-      var markers = {};
-
-      <% if @location.lat && @location.lng %>
-        markers['<%= @location.id %>'] = L.Marker.movingMarker([L.latLng(<%= @location.lat %>, <%= @location.lng %>)]);
-        markers['<%= @location.id %>'].addTo(map);
-      <% end %>
-
-      var markerLocations = new Array();
-
-      for (var key in markers) {
-        markerLocations.push(markers[key]);
-      }
-
-      if(markerLocations.length > 0) {
-        var group = new L.featureGroup(markerLocations);
-        map.fitBounds(group.getBounds());
-      } else {
-        map.setView([200, 90], 13);
-      }
-
-      L.edgeMarker().addTo(map);
-
-      var userUpdates = function(message) {
-
-        var markerLength = Object.keys(markers).length;
-        var latlng = L.latLng(message.lat, message.lng);
-
-        if(markerLength == 0) {
-          console.log("OK");
-          markers['<%= @location.id %>'] = L.Marker.movingMarker([latlng]);
-          markers['<%= @location.id %>'].addTo(map);
-        }
-        markers['<%= @location.id %>'].moveTo(latlng, 1000);
-
-        if(markerLength == 0) {
-          for (var key in markers) {
-            markerLocations.push(markers[key]);
-          }
-
-          var group = new L.featureGroup(markerLocations);
-          map.fitBounds(group.getBounds());
-        }
-      }
-
-      App.cable.subscriptions.create({
-        channel: "LocationChannel",
-        location_id: '<%= @location.id %>'
-      }, {
-        received: function(data) {
-          userUpdates(data);
-          return console.log(data);
-        },
-        connected: function() {
-        }
-      });
-    });
-  </script>
+  <div id="map-<%= @location.id %>" class='map' data-lat="<%= @location.lat %>" data-lng="<%= @location.lng %>"></div>
 <% end %>

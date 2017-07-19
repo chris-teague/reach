@@ -19,6 +19,7 @@
 //= require leaflet
 //= require leaflet_edge
 //= require movingmarker
+//= require channels/locations
 
 $(document).ready(function(){
   setInterval(function () {

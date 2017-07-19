@@ -3,7 +3,7 @@ body {
   margin: 0;
 }
 
-html, body, #map {
+html, body, .map {
   height: 100%;
   overflow:none;
 }
@@ -27,7 +27,7 @@ html, body, #map {
   padding: 2px 4px;
 }
 
-#map {
+.map {
  width:100%;
  position:absolute;
 }
