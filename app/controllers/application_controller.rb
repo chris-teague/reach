@@ -25,13 +25,6 @@ class ApplicationController < ActionController::Base
   private
 
   def detect_browser
-    case request.user_agent
-      when /Android/i && /mobile/i
-        request.variant = :android
-      when /Android/i
-        request.variant = :android
-      else
-        request.variant = :standard
-    end
+    request.variant = :android if request.user_agent =~ /Android/i
   end
 end

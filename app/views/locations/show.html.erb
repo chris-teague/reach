@@ -18,13 +18,7 @@
 
 <% if logged_in? %>
   <p id="notice">
-    <% if current_user.locations.count <= 3 %>
-      Location sharing link copied to clipboard. <br />Paste this into
-      another app (i.e. Messenger, an email) to share your current location with friends
-      &amp; colleagues.
-    <% else %>
-      Link copied to clipboard.
-    <% end %>
+    Link copied to clipboard.
   </p>
 <% end %>
 
