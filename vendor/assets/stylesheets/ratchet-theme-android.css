@@ -15,13 +15,6 @@ body {
   color: #222;
 }
 
-a {
-  color: #33b5e5;
-}
-a:active {
-  color: #1a9bcb;
-}
-
 .content {
   background-color: #f2f2f2;
 }

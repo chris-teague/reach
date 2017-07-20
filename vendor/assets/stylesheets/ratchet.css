@@ -242,13 +242,9 @@ body {
 }
 
 a {
-  /*color: #428bca;*/
   text-decoration: none;
 
   -webkit-tap-highlight-color: transparent;
-}
-a:active {
-  color: #3071a9;
 }
 
 .content {
