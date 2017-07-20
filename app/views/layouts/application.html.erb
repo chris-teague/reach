@@ -7,6 +7,12 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= csrf_meta_tags %>
+
+    <% if request.variant.include? :android %>
+      <%= stylesheet_link_tag 'ratchet-theme-android', 'data-turbolinks-track': 'reload' %>
+    <% else %>
+      <%= stylesheet_link_tag 'ratchet-theme-ios', 'data-turbolinks-track': 'reload' %>
+    <% end %>
     <meta name="viewport" content="width=device-width, initial-scale=2.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="turbolinks-cache-control" content="no-cache">

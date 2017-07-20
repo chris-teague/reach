@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_user_token_in_session
+  before_action :detect_browser
 
   helper_method :current_user, :logged_in?
 
@@ -19,5 +20,18 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     !!current_user
+  end
+
+  private
+
+  def detect_browser
+    case request.user_agent
+      when /Android/i && /mobile/i
+        request.variant = :android
+      when /Android/i
+        request.variant = :android
+      else
+        request.variant = :standard
+    end
   end
 end

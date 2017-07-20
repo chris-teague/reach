@@ -20,6 +20,7 @@
 //= require leaflet_edge
 //= require movingmarker
 //= require channels/locations
+//= require ratchet
 
 document.addEventListener("turbolinks:load", function() {
   setInterval(function () {

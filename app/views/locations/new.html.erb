@@ -1,4 +1,6 @@
-<h1>Real Time Location Sharing</h1>
+<p>
+  Reach lets you share your current location in real time via a URL.
+</p>
 
 <% if logged_in? %>
   <%= render 'form', location: @location %>
@@ -9,17 +11,14 @@
 <% end %>
 
 <% if logged_in? && !current_user.locations.current.empty? %>
-  <Br />
+  <br />
   <h2>You are currently sharing</h2>
-  <table>
-    <tr>
-      <th style="width:60%">Name</th><th>Expires</th>
-    </tr>
+
+  <ul class="table-view">
     <% current_user.locations.current.each do |location| %>
-      <tr>
-        <td><%= link_to(location.name.present? ? location.name : '<em>unnamed</em>'.html_safe, location_url(location)) %></td>
-        <td><%= distance_of_time_in_words(Time.zone.now, location.expires_at) %></td>
-      </tr>
+      <li class="table-view-cell">
+        <%= link_to(location.name.present? ? location.name : '<em>unnamed</em>'.html_safe, location_url(location), class: 'navigate-right') %>
+      </li>
     <% end %>
-  </table>
+  </ul>
 <% end %>
