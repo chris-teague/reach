@@ -20,7 +20,7 @@ document.addEventListener("turbolinks:load", function() {
 
   /* setup initial marker if we already have a user location */
   if(map._container.dataset.lat != '') {
-    map.setView([map._container.dataset.lat, map._container.dataset.lng], 13);
+    map.setView([map._container.dataset.lat, map._container.dataset.lng], 15);
     var latlng = L.latLng(map._container.dataset.lat, map._container.dataset.lng);
     marker = L.Marker.movingMarker([latlng]);
     marker.addTo(map);
