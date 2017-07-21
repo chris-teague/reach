@@ -1,24 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the Rails web app underpinning the Reach iOS & Android applications.
 
-Things you may want to cover:
+![alt text](https://raw.githubusercontent.com/chris-teague/reach/master/docs/example.gif)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
