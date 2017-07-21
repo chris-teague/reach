@@ -2,7 +2,11 @@
 
 This is the Rails web app underpinning the Reach iOS & Android applications. It was created as an exercise in learning how Turbolinks 5 could work as a base for iOS & Android app development.
 
-Quick Demo:
+## Overview
+
+iOS & Android app users are able to use the respective apps to generate a unique URL for sharing their current location, that expires after a set period of time. The native apps make use of background location updates so the user doesn't need to keep the app open for it to work effectively. Upon creating a location sharing session, a unique URL is generated & copied to the app user's clipboard for them to share with whomever they wish.
+
+### Quick Demo:
 
 <img src="https://raw.githubusercontent.com/chris-teague/reach/master/docs/example.gif" width="250">
 
