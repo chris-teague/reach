@@ -4,7 +4,7 @@ This is the Rails web app underpinning the Reach iOS & Android applications. It 
 
 ## Overview
 
-The associated iOS & Android apps allow users to generate a unique URL that shares their current location. This URL automatically expires after a given period of time. These apps use native background location updates (as opposed to, say, browser based geolocation) so the user doesn't need to keep the app open for it to work effectively. After creating a location sharing session, a unique URL is generated & copied to the app user's clipboard for them to share with whomever they wish.
+The associated iOS & Android apps allow users to generate a unique URL that shares their current location with real time updates. This URL automatically expires after a given period of time. These apps use native background location updates (as opposed to, say, browser based geolocation) so the user doesn't need to keep the app open for it to work effectively. After creating a location sharing session, a unique URL is generated & copied to the app user's clipboard for them to share with whomever they wish.
 
 ### Quick Demo:
 
