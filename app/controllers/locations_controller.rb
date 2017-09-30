@@ -1,11 +1,13 @@
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy, :spam_cable]
+  before_action :set_location, only: [:show, :edit, :update, :destroy]
   protect_from_forgery except: [:update]
 
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    render nothing: true, status: :unauthorized unless current_user
+
+    @locations = current_user.all
   end
 
   # GET /locations/1
@@ -14,8 +16,7 @@ class LocationsController < ApplicationController
     render :expired if @location.expired?
   end
 
-  def expired
-  end
+  def expired; end
 
   # GET /locations/new
   def new
@@ -23,8 +24,7 @@ class LocationsController < ApplicationController
   end
 
   # GET /locations/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /locations
   # POST /locations.json
