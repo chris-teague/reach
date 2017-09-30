@@ -1,0 +1,15 @@
+title Reach App Sign in Flow
+
+App->App: Check for UUID & Key
+
+opt if no key
+    App->WebServer: Request UUID & Key
+    WebServer->App: Return UUID & Key
+    App->App: Save to internal storage
+end
+
+App->InternalTurbolinksClient: Inject UUID & Key as header auth
+App->InternalTurbolinksClient: Request
+InternalTurbolinksClient->WebServer: Authenticated Request
+WebServer->InternalTurbolinksClient: Response
+
